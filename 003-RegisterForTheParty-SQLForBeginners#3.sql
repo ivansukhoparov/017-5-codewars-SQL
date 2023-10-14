@@ -19,4 +19,6 @@ VALUES ('IVAN',
 
 
 SELECT age
-FROM participants
+FROM participants /*
+thanks to this task, I learned that different queries in the SQL are separated by a semicolon.
+*/
