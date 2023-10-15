@@ -18,17 +18,19 @@ Also, this database is crowd-sourced, so sometimes Africa is written Africa and 
 
 */ -- OLD SOLUTION FOR THIS TASK
 /*
-SELECT *
+SELECT capital
 FROM countries 
 WHERE (continent = 'Africa'
        OR continent ='Afrika')
     AND (LEFT(country, 1) = 'E')
+ORDER BY capital  ASC    
 LIMIT 3
 */ --NEW SOLUTION FOR THIS TASK
  
-SELECT *
+SELECT capital
 FROM countries 
 WHERE continent IN('Africa', 
-                   'Afrika') 
+                   'Afrika')
     AND country LIKE 'E%'
+ORDER BY capital ASC
 LIMIT 3
