@@ -16,10 +16,19 @@ You should only give the names of the capitals. Any additional information is ju
 If you get more than 3, you will be kicked out, for being too smart
 Also, this database is crowd-sourced, so sometimes Africa is written Africa and in other times Afrika.
 
-*/ 
+*/ -- OLD SOLUTION FOR THIS TASK
+/*
 SELECT *
 FROM countries 
 WHERE (continent = 'Africa'
        OR continent ='Afrika')
     AND (LEFT(country, 1) = 'E')
+LIMIT 3
+*/ --NEW SOLUTION FOR THIS TASK
+ 
+SELECT *
+FROM countries 
+WHERE continent IN('Africa', 
+                   'Afrika') 
+    AND country LIKE 'E%'
 LIMIT 3
