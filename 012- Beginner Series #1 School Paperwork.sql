@@ -19,4 +19,10 @@ SELECT n,
                 AND m>0 THEN n*m
            ELSE 0
        END AS res
-FROM paperwork
+FROM paperwork /*
+NEW SOLUTION
+*/
+SELECT n,
+       m,
+       GREATEST(n, 0) * GREATEST(m, 0) AS res
+FROM paperwork;
