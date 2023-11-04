@@ -11,5 +11,5 @@ Return a table with two columns (abs, log) where the values in abs are the absol
 
 */
 SELECT ABS(number1) AS abs,
-       LOG(number2,64) AS log
+       LOG(64, number2) AS log
 FROM decimals
