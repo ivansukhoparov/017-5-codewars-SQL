@@ -15,3 +15,9 @@ replace(replace(replace(replace(replace(replace(replace(replace(replace(replace
 (str, 'A', ''), 'O', ''), 'I', ''), 'U', ''), 'E', ''), 'a', ''), 'o', ''), 'i', ''), 'u', ''), 'e', '')
 as res
 from disemvowel
+
+select str, regexp_replace(str, '[aeiou]', '', 'ig') res
+from disemvowel
+
+SELECT str, TRANSLATE(str, 'aeiouAEIOU', '') AS res
+FROM disemvowel
