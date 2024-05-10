@@ -9,10 +9,33 @@
 -- SOLUTION:
 
 SELECT
-"width",
-"height",
-"depth",
-2*("width"*"depth"+"width"*"height"+"depth"*"height") AS "area",
-"width"*"height"*"depth" AS "volume"
-FROM "box"
-ORDER BY "area" ASC, "volume" ASC, "width" ASC, "height" ASC
+ width ,
+ height ,
+ depth ,
+2*( width * depth + width * height + depth * height ) AS  area ,
+ width * height * depth  AS  volume 
+FROM  box 
+ORDER BY  area  ASC,  volume  ASC,  width  ASC,  height  ASC
+
+
+-- ANOTHER VERY HEAVY SOLUTION:
+
+CREATE OR REPLACE FUNCTION calculation(width INTEGER, height INTEGER, depth INTEGER)
+RETURNS TABLE (area INTEGER, volume INTEGER) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        2 * (width * height + width * depth + height * depth) AS area,
+        width * height * depth AS volume;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT 
+  b.width, 
+  b.height, 
+  b.depth,
+  c.area,
+  c.volume
+FROM box b
+CROSS JOIN LATERAL calculation(b.width, b.height, b.depth) AS c
+ORDER BY c.area, c.volume, b.width, b.height;
